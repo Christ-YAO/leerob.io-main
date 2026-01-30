@@ -26,15 +26,15 @@ export function Footer() {
           <nav className="flex flex-row flex-wrap gap-x-4 gap-y-2">
             {navItems.map(({ path, name }) => {
               const isActive = pathname === path || (path !== '/' && pathname?.startsWith(path));
-              
+
               return (
                 <Link
                   key={path}
                   href={path}
                   className={`
                     text-sm transition-colors
-                    ${isActive 
-                      ? 'text-neutral-900 dark:text-neutral-100 font-medium' 
+                    ${isActive
+                      ? 'text-neutral-900 dark:text-neutral-100 font-medium'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
                     }
                   `}
