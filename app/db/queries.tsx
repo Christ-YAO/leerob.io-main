@@ -7,18 +7,23 @@ import {
   unstable_noStore as noStore,
 } from 'next/cache';
 
-let googleAuth = new auth.GoogleAuth({
-  credentials: {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
-  },
-  scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
-});
+let googleAuth: auth.GoogleAuth | null = null;
+let yt: ReturnType<typeof youtube> | null = null;
 
-let yt = youtube({
-  version: 'v3',
-  auth: googleAuth,
-});
+if (process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+  googleAuth = new auth.GoogleAuth({
+    credentials: {
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY,
+    },
+    scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
+  });
+
+  yt = youtube({
+    version: 'v3',
+    auth: googleAuth,
+  });
+}
 
 export async function getBlogViews() {
   if (!process.env.POSTGRES_URL) {
@@ -50,6 +55,10 @@ export async function getViewsCount(): Promise<
 
 export const getLeeYouTubeSubs = cache(
   async () => {
+    if (!yt) {
+      return '0';
+    }
+
     let response = await yt.channels.list({
       id: ['UCZMli3czZnd1uoc1ShTouQw'],
       part: ['statistics'],
@@ -66,6 +75,10 @@ export const getLeeYouTubeSubs = cache(
 
 export const getVercelYouTubeSubs = cache(
   async () => {
+    if (!yt) {
+      return '0';
+    }
+
     let response = await yt.channels.list({
       id: ['UCLq8gNoee7oXM7MvTdjyQvA'],
       part: ['statistics'],

@@ -18,7 +18,7 @@ import {
   getViewsCount,
 } from 'app/db/queries';
 
-function Badge(props) {
+function Badge(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
       {...props}
@@ -45,7 +45,15 @@ function ArrowIcon() {
   );
 }
 
-function ChannelLink({ img, link, name }) {
+function ChannelLink({
+  img,
+  link,
+  name,
+}: {
+  img: any;
+  link: string;
+  name: string;
+}) {
   return (
     <div className="group flex w-full">
       <a
@@ -103,7 +111,7 @@ async function Subs({ name }: { name: string }) {
   );
 }
 
-function BlogLink({ slug, name }) {
+function BlogLink({ slug, name }: { slug: string; name: string }) {
   return (
     <div className="group">
       <a

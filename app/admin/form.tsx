@@ -136,9 +136,10 @@ function GuestbookEntry({ entry, children }) {
   );
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ');
+const cx = (...classes: (string | undefined | null | false)[]): string =>
+  classes.filter(Boolean).join(' ');
 
-function DeleteButton({ isActive }) {
+function DeleteButton({ isActive }: { isActive: boolean }) {
   const { pending } = useFormStatus();
 
   return (
