@@ -11,17 +11,17 @@ import { SandpackCSS } from './blog/[slug]/sandpack';
 export const metadata: Metadata = {
   metadataBase: new URL('https://france-stanislas.dev'),
   title: {
-    default: 'France Stanislas Bantan Toula Koudissa',
-    template: '%s | France Stanislas',
+    default: 'France BANTANTOULA • DevOps',
+    template: '%s | France Bantantoula',
   },
   description:
     'DevOps Junior orienté CI/CD et automatisation. GitLab, Docker, Linux, AWS. Stagiaire DevOps chez Box Africa, Abidjan.',
   openGraph: {
-    title: 'France Stanislas Bantan Toula Koudissa',
+    title: 'France Stanislas BANTANTOULA KOUDISSA',
     description:
       'DevOps Junior orienté CI/CD et automatisation. GitLab, Docker, Linux, AWS.',
     url: 'https://france-stanislas.dev',
-    siteName: 'France Stanislas',
+    siteName: 'France Bantantoula',
     locale: 'fr_FR',
     type: 'website',
   },
@@ -37,8 +37,11 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: 'France Stanislas Bantan Toula Koudissa',
+    title: 'France Stanislas BANTANTOULA KOUDISSA',
     card: 'summary_large_image',
+  },
+  icons: {
+    icon: '/images/France_.jpg',
   },
 };
 

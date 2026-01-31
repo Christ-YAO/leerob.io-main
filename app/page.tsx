@@ -123,7 +123,7 @@ export default function Page() {
         <div className="shrink-0">
           <div className="relative h-28 w-28 overflow-hidden rounded-full border border-neutral-700 ring-2 ring-neutral-800 ring-offset-2 ring-offset-[#111010] sm:h-36 sm:w-36">
             <Image
-              alt="France Stanislas Bantan Toula Koudissa"
+              alt="France Stanislas BANTANTOULA KOUDISSA"
               src={avatar}
               fill
               sizes="144px"
