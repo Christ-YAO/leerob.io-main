@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import avatar from 'app/avatar.jpg';
+import avatar from 'public/images/France_.jpg';
 import { PreloadResources } from 'app/preload';
 import { CustomIcon } from 'app/components/CustomIcon';
 import smashing from 'public/images/home/smashing.jpg';
@@ -275,18 +275,19 @@ export default function Page() {
       </div>
       <div className="my-6 flex h-14 w-full flex-row flex-wrap gap-2">
         {[
-          { name: 'Docker', href: 'https://www.docker.com' },
-          { name: 'GitLab', href: 'https://about.gitlab.com' },
-          { name: 'AWS', href: 'https://aws.amazon.com' },
-          { name: 'Linux', href: 'https://www.linux.org' },
-        ].map(({ name, href }) => (
+          { name: 'Docker', icon: 'docker' as const, href: 'https://www.docker.com' },
+          { name: 'GitLab', icon: 'gitlab' as const, href: 'https://about.gitlab.com' },
+          { name: 'AWS', icon: 'aws' as const, href: 'https://aws.amazon.com' },
+          { name: 'Linux', icon: 'linux' as const, href: 'https://www.linux.org' },
+        ].map(({ name, icon, href }) => (
           <a
             key={name}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-700 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+            className="inline-flex items-center gap-2 rounded border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-700 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
           >
+            <CustomIcon name={icon} size={18} />
             {name}
           </a>
         ))}
