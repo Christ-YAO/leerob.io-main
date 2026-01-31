@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import avatar from 'public/images/France_.jpg';
-import { PreloadResources } from 'app/preload';
 import { CustomIcon } from 'app/components/CustomIcon';
 import { cn } from '@/lib/utils';
 import smashing from 'public/images/home/smashing.jpg';
@@ -116,8 +115,6 @@ function ProjectLink({
 export default function Page() {
   return (
     <section className="space-y-12">
-      <PreloadResources />
-
       {/* Hero */}
       <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
         <div className="shrink-0">
