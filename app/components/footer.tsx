@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CustomIcon } from './CustomIcon';
 
 export function Footer() {
   const pathname = usePathname();
@@ -22,24 +21,6 @@ export function Footer() {
             <p className="text-xs text-neutral-600 dark:text-neutral-400">
               © {currentYear} France Stanislas. Tous droits réservés.
             </p>
-            <div className="flex items-center gap-3 mt-2">
-              <a
-                href="https://www.linkedin.com/in/france-stanislas-bantantoula-koudissa-30245b254"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neutral-500 hover:text-[#0A66C2] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <CustomIcon name="linkedin" size={20} />
-              </a>
-              <a
-                href="mailto:ton-email@gmail.com"
-                className="text-neutral-500 hover:text-red-600 transition-colors"
-                aria-label="Email (Gmail)"
-              >
-                <CustomIcon name="gmail" size={20} />
-              </a>
-            </div>
           </div>
 
           <nav className="flex flex-row flex-wrap gap-x-4 gap-y-2">

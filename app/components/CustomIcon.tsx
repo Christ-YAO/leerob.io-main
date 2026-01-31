@@ -29,7 +29,7 @@ const Icons = {
   ),
   gmail: (props: SvgProps) => (
     <img
-      src="https://static.vecteezy.com/system/resources/previews/016/716/465/original/gmail-icon-free-png.png"
+      src="/images/Logo-gmail.webp"
       alt="Gmail"
       width={props.width ?? 24}
       height={props.height ?? 24}
