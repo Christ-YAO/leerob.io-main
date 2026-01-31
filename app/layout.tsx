@@ -9,18 +9,20 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SandpackCSS } from './blog/[slug]/sandpack';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://leerob.io'),
+  metadataBase: new URL('https://france-stanislas.dev'),
   title: {
-    default: 'Lee Robinson',
-    template: '%s | Lee Robinson',
+    default: 'France Stanislas Bantan Toula Koudissa',
+    template: '%s | France Stanislas',
   },
-  description: 'Developer, writer, and creator.',
+  description:
+    'DevOps Junior orienté CI/CD et automatisation. GitLab, Docker, Linux, AWS. Stagiaire DevOps chez Box Africa, Abidjan.',
   openGraph: {
-    title: 'Lee Robinson',
-    description: 'Developer, writer, and creator.',
-    url: 'https://leerob.io',
-    siteName: 'Lee Robinson',
-    locale: 'en_US',
+    title: 'France Stanislas Bantan Toula Koudissa',
+    description:
+      'DevOps Junior orienté CI/CD et automatisation. GitLab, Docker, Linux, AWS.',
+    url: 'https://france-stanislas.dev',
+    siteName: 'France Stanislas',
+    locale: 'fr_FR',
     type: 'website',
   },
   robots: {
@@ -35,12 +37,8 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: 'Lee Robinson',
+    title: 'France Stanislas Bantan Toula Koudissa',
     card: 'summary_large_image',
-  },
-  verification: {
-    google: 'eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw',
-    yandex: '14d2e73487fa6c71',
   },
 };
 
@@ -54,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={cx(
         'text-black bg-white dark:text-white dark:bg-[#111010]',
         GeistSans.variable,

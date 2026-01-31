@@ -1,115 +1,121 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Work',
-  description: 'A summary of my work and contributions.',
+  title: 'Expérience',
+  description:
+    'Parcours professionnel de France Stanislas : DevOps, IT Support, Box Africa, Abidjan.',
 };
-
-async function Stars() {
-  let res = await fetch('https://api.github.com/repos/vercel/next.js');
-  let json = await res.json();
-  let count = Math.round(json.stargazers_count / 1000);
-  return `${count}k stars`;
-}
 
 export default function WorkPage() {
   return (
     <section>
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">my work</h1>
+      <h1 className="font-medium text-2xl mb-8 tracking-tighter">
+        Mon expérience
+      </h1>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          On a mission to build products developers{' '}
-          <Link href="/blog/developer-experience">love</Link>, and along the
-          way, teach the next generation of developers. Here's a summary of my
-          work so far.
+          Plus d&apos;un an et demi d&apos;expérience en support IT et DevOps,
+          entre Abidjan (Côte d&apos;Ivoire) et Brazzaville (République du
+          Congo). Résumé de mon parcours.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Vercel</h2>
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          Box Africa — Stagiaire DevOps
+        </h2>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          VP of Product
+          Oct. 2025 — Aujourd&apos;hui · Abidjan, Côte d&apos;Ivoire
         </p>
         <p>
-          I joined <a href="https://vercel.com/home">Vercel</a> early to grow{' '}
-          <a href="https://nextjs.org">Next.js</a> and our developer community.
-          I built our Developer Relations team to teach our community about our
-          products.
+          Intégré à l&apos;équipe DevOps de{' '}
+          <a
+            href="https://www.linkedin.com/company/boxafrica"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Box Africa
+          </a>
+          , je participe à la mise en place et à l&apos;automatisation de
+          processus CI/CD avec GitLab, et je consolide mes compétences en
+          gestion de code source, virtualisation et conteneurisation.
         </p>
         <ul>
           <li>
-            In 2021, I was promoted to Director of DevRel. We{' '}
-            <a href="https://twitter.com/kelseyhightower/status/1105985400110112768">
-              translated customer pain
-            </a>{' '}
-            back into the product roadmap. We spoke at{' '}
-            <Link href="/blog/nextjs-conf-2022-recap">conferences</Link>, wrote
-            blog posts, and created videos. We built open-source examples and
-            contributed back to the product.
+            Déploiement et gestion de pipelines <strong>GitLab CI/CD</strong> pour
+            des projets internes.
           </li>
           <li>
-            In 2022, I was promoted to VP of Developer Experience, now also
-            leading our product documentation team. My team created a{' '}
-            <a href="https://nextjs.org/learn">new free course</a> to teach
-            Next.js, which had 17 million page views that year.{' '}
-            <a href="https://twitter.com/leeerob/status/1608900031859527682">
-              I shipped.
-            </a>{' '}
-            I partnered with our open-source community, collaborating with
-            frameworks like{' '}
-            <a href="https://vercel.com/docs/frameworks/nuxt">Nuxt</a> and{' '}
-            <a href="https://astro.build/blog/vercel-official-hosting-partner/">
-              Astro
-            </a>{' '}
-            and sponsoring individuals and projects.
+            Utilisation de <strong>Git</strong> pour le travail collaboratif.
           </li>
           <li>
-            In 2023, I was promoted to VP of Product, now also leading Product
-            Management.
+            Utilisation de <strong>Docker</strong> pour la création et la
+            gestion de conteneurs applicatifs.
+          </li>
+          <li>
+            Renforcement des compétences sur <strong>Linux</strong> et
+            l&apos;administration système dans un contexte DevOps.
           </li>
         </ul>
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          Box Africa — IT Support Specialist
+        </h2>
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+          Mar. 2025 — Sep. 2025 · Abidjan (mission Société Générale Côte
+          d&apos;Ivoire)
+        </p>
         <p>
-          Since I joined Vercel in 2020, Next.js active developers have grown
-          1000%, now at ~900k. Next.js is now a top 10 software project on
-          GitHub with <Stars />. It's used by Walmart, ChatGPT, Starbucks, Okta,
-          Datastax, Notion, and <a href="https://nextjs.org/showcase">more</a>.
+          Stagiaire IT Support au siège de la SGCI : installation et
+          configuration des postes, dépannage matériel/logiciel/réseau, gestion
+          des tickets via <strong>Easy Vista</strong>, administration{' '}
+          <strong>Active Directory</strong>, Cisco IP Communicator, BitLocker,
+          certificats de sécurité.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Hy-Vee</h2>
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          Muezy — Informaticien
+        </h2>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          Senior Software Engineer, 2018 — 2020
+          Nov. 2023 — Déc. 2023 · Brazzaville, République du Congo
         </p>
         <p>
-          Hy-Vee, an almost 100-year-old grocery chain in the United States,
-          wanted to build a new version of their digital storefront. I joined a
-          team of <Link href="/blog/product-engineers">product engineers</Link>{' '}
-          working across web and mobile to rebuild their legacy .NET application
-          (~500k MAU) with React and React Native.
-        </p>
-        <p>
-          On the frontend, I led our move from a custom webpack and React
-          configuration to Next.js and the latest React patterns. In the
-          process, I shared my learnings online, helping educate members of the
-          React and Next.js community by creating courses.
-        </p>
-        <p>
-          Throughout my two years, I was able to work on some hard problems:
-          decoupling a decade old monolith into microservices, working with a
-          federated GraphQL API, learning and occasionally managing a Kubernetes
-          cluster, building and implementing a design system, incrementally
-          migrating individual components and routes to a new framework and
-          infrastructure, and more.
+          Installation, configuration et maintenance des postes, administration
+          des messageries (LWS), gestion des licences Kaspersky (MyKaspersky),
+          assistance technique, Active Directory.
         </p>
         <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Workiva</h2>
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          PRESF SA & Kenaya Finances — Informaticien
+        </h2>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          Software Engineer, 2015 — 2018
+          Fév. 2023 — Jul. 2023 · Brazzaville
         </p>
         <p>
-          Workiva ($WK) is a cloud platform for data reporting and compliance.
-          During my time at Workiva, I gained my first production experience
-          using React. I worked on tooling to help predict and alert and
-          regressions in our SaaS platform, building a product similar to
-          open-source tools like Sentry.
+          Gestion des mails professionnels (LWS, IONOS), plateformes Western
+          Union / Money Gram / Ria, assistance technique, développement
+          d&apos;une application de gestion du personnel, maintenance
+          d&apos;applications et bases de données.
+        </p>
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          SOPECO Congo — Analyste Programmeur
+        </h2>
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
+          Jan. 2022 — Mar. 2022 · Brazzaville
+        </p>
+        <p>
+          Analyse des besoins, développement de fonctionnalités, conception
+          d&apos;un système de billetterie.
+        </p>
+        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+        <h2 className="font-medium text-xl mb-1 tracking-tighter">
+          Formation & certifications
+        </h2>
+        <p>
+          <strong>PIGIER Côte d&apos;Ivoire</strong> (2023–2024). Certifications
+          : NDG Linux Essentials, NDG Linux, Windows Server (Udemy), Gestion
+          des cybermenaces, Computer Hardware Basics, Operating Systems Basics,
+          Python Essentials 1, Introduction to IoT, Introduction to
+          Cybersecurity (Cisco), CompTIA A+ (Alison).
         </p>
       </div>
     </section>

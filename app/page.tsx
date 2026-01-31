@@ -1,28 +1,20 @@
-import { Suspense } from 'react';
-import { unstable_noStore as noStore } from 'next/cache';
 import Link from 'next/link';
 import Image from 'next/image';
+import avatar from 'app/avatar.jpg';
+import { PreloadResources } from 'app/preload';
 import smashing from 'public/images/home/smashing.jpg';
 import summit from 'public/images/home/summit.jpg';
 import reactathon from 'public/images/home/reactathon.jpg';
 import ship from 'public/images/home/ship.jpg';
 import filming from 'public/images/home/filming.jpg';
 import meetups from 'public/images/home/meetups.jpg';
-import vercel from 'public/images/home/vercel.jpg';
-import avatar from 'app/avatar.jpg';
-import ViewCounter from 'app/blog/view-counter';
-import { PreloadResources } from 'app/preload';
-import {
-  getLeeYouTubeSubs,
-  getVercelYouTubeSubs,
-  getViewsCount,
-} from 'app/db/queries';
 
 function Badge(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
       {...props}
       target="_blank"
+      rel="noopener noreferrer"
       className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
     />
   );
@@ -45,47 +37,30 @@ function ArrowIcon() {
   );
 }
 
-function ChannelLink({
-  img,
-  link,
-  name,
+function SocialLink({
+  href,
+  label,
+  icon,
 }: {
-  img: any;
-  link: string;
-  name: string;
+  href: string;
+  label: string;
+  icon: React.ReactNode;
 }) {
   return (
     <div className="group flex w-full">
       <a
-        href={link}
+        href={href}
         target="_blank"
+        rel="noopener noreferrer"
         className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800"
       >
         <div className="flex items-center space-x-3">
-          <div className="relative h-16">
-            <Image
-              alt={name}
-              src={img}
-              height={64}
-              width={64}
-              sizes="33vw"
-              className="h-16 w-16 rounded-full border border-neutral-200 dark:border-neutral-700"
-              priority
-            />
-            <div className="relative -right-10 -top-6 inline-flex h-6 w-6 items-center rounded-full border border-neutral-200 bg-white p-1 dark:border-neutral-700">
-              <svg width="15" height="11" role="img" aria-label="YouTube logo">
-                <use href="/sprite.svg#youtube" />
-              </svg>
-            </div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800">
+            {icon}
           </div>
-          <div className="flex flex-col">
-            <p className="font-medium text-neutral-900 dark:text-neutral-100">
-              {name}
-            </p>
-            <Suspense fallback={<p className="h-6" />}>
-              <Subs name={name} />
-            </Suspense>
-          </div>
+          <p className="font-medium text-neutral-900 dark:text-neutral-100">
+            {label}
+          </p>
         </div>
         <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
           <ArrowIcon />
@@ -95,36 +70,32 @@ function ChannelLink({
   );
 }
 
-async function Subs({ name }: { name: string }) {
-  noStore();
-  let subscribers;
-  if (name === '@leerob') {
-    subscribers = await getLeeYouTubeSubs();
-  } else {
-    subscribers = await getVercelYouTubeSubs();
-  }
-
-  return (
-    <p className="text-neutral-600 dark:text-neutral-400">
-      {subscribers} subscribers
-    </p>
-  );
-}
-
-function BlogLink({ slug, name }: { slug: string; name: string }) {
+function ProjectLink({
+  name,
+  href,
+  description,
+}: {
+  name: string;
+  href: string;
+  description?: string;
+}) {
   return (
     <div className="group">
       <a
-        href={`/blog/${slug}`}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex w-full items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800"
       >
         <div className="flex flex-col">
           <p className="font-medium text-neutral-900 dark:text-neutral-100">
             {name}
           </p>
-          <Suspense fallback={<p className="h-6" />}>
-            <Views slug={slug} />
-          </Suspense>
+          {description && (
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-1">
+              {description}
+            </p>
+          )}
         </div>
         <div className="transform text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 dark:text-neutral-300">
           <ArrowIcon />
@@ -134,66 +105,36 @@ function BlogLink({ slug, name }: { slug: string; name: string }) {
   );
 }
 
-async function Views({ slug }: { slug: string }) {
-  let views = await getViewsCount();
-  return <ViewCounter allViews={views} slug={slug} />;
-}
+const LINKEDIN_URL =
+  'https://www.linkedin.com/in/france-stanislas-bantantoula-koudissa-30245b254';
+// Remplacer par ton adresse Gmail réelle
+const GMAIL_MAILTO = 'mailto:ton-email@gmail.com';
 
 export default function Page() {
   return (
     <section>
       <PreloadResources />
       <h1 className="mb-8 text-2xl font-medium tracking-tighter">
-        hey, I'm leerob 👋
+        Bonjour, je suis France Stanislas 👋
       </h1>
       <p className="prose prose-neutral dark:prose-invert">
-        {`I'm a frontend developer, optimist, and community builder. I currently `}
-        <Link href="/work">work</Link>
-        {` as the VP of Product at `}
+        DevOps Junior orienté <strong>CI/CD</strong> et automatisation. Je suis
+        actuellement stagiaire DevOps chez{' '}
         <span className="not-prose">
-          <Badge href="https://vercel.com/home">
-            <svg
-              width="13"
-              height="11"
-              role="img"
-              aria-label="Vercel logo"
-              className="mr-1 inline-flex"
-            >
-              <use href="/sprite.svg#vercel" />
-            </svg>
-            Vercel
+          <Badge href="https://www.linkedin.com/company/boxafrica">
+            Box Africa
           </Badge>
-        </span>
-        {`, where I help teach the `}
-        <Badge href="https://nextjs.org">
-          <img
-            alt="Next.js logomark"
-            src="/next-logo.svg"
-            className="!mr-1"
-            width="14"
-            height="14"
-          />
-          Next.js
-        </Badge>
-        {` community, an open-source web framework built with `}
-        <Badge href="https://react.dev">
-          <svg
-            width="14"
-            height="14"
-            role="img"
-            aria-label="React logo"
-            className="!mr-1"
-          >
-            <use href="/sprite.svg#react" />
-          </svg>
-          React
-        </Badge>
-        .
+        </span>{' '}
+        à Abidjan (Côte d&apos;Ivoire), où je participe à la mise en place de
+        pipelines <strong>GitLab CI/CD</strong>, à la conteneurisation avec{' '}
+        <Badge href="https://www.docker.com">Docker</Badge>, et au renforcement
+        de mes compétences sur <strong>Linux</strong> et l&apos;administration
+        système.
       </p>
       <div className="grid grid-cols-2 grid-rows-4 sm:grid-rows-3 sm:grid-cols-3 gap-4 my-8">
         <div className="relative h-40">
           <Image
-            alt="Me speaking on stage at React Summit about the future of Next.js"
+            alt=""
             src={summit}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -203,7 +144,7 @@ export default function Page() {
         </div>
         <div className="relative sm:row-span-2 row-span-1">
           <Image
-            alt="Me standing on stage at Reactathon delivering the keynote"
+            alt=""
             src={reactathon}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -213,7 +154,7 @@ export default function Page() {
         </div>
         <div className="relative">
           <Image
-            alt="Me and Guillermo Rauch on stage for Vercel Ship, answering questions from the Next.js community"
+            alt=""
             src={ship}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -223,7 +164,7 @@ export default function Page() {
         </div>
         <div className="relative row-span-2">
           <Image
-            alt="Me, Lydia, and Delba filming the Next.js Conf keynote"
+            alt=""
             src={filming}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -233,7 +174,7 @@ export default function Page() {
         </div>
         <div className="relative row-span-2">
           <Image
-            alt="My badge on top of a pile of badges from a Vercel meetup we held"
+            alt=""
             src={meetups}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -243,7 +184,7 @@ export default function Page() {
         </div>
         <div className="relative h-40">
           <Image
-            alt="Me standing on stage at SmashingConf giving a talk about my optimism for the web"
+            alt=""
             src={smashing}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
@@ -252,91 +193,130 @@ export default function Page() {
           />
         </div>
       </div>
+      <div className="my-8 flex flex-col items-center gap-6 sm:flex-row">
+        <div className="relative h-32 w-32 overflow-hidden rounded-full border border-neutral-200 dark:border-neutral-700">
+          <Image
+            alt="France Stanislas Bantan Toula Koudissa"
+            src={avatar}
+            fill
+            sizes="128px"
+            priority
+            className="object-cover"
+          />
+        </div>
+        <div className="prose prose-neutral dark:prose-invert flex-1">
+          <p>
+            Plus d&apos;un an d&apos;expérience en support IT et DevOps :
+            GitLab, Git, Docker, Linux, AWS (EC2, S3, CloudWatch, Lambda, SQS,
+            DynamoDB), Active Directory, Windows Server. Certifications Cisco
+            (Linux, Cybersecurity, Python), NDG Linux, Windows Server.
+          </p>
+        </div>
+      </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I create educational content for developers, teaching them about web
-          development, JavaScript and TypeScript, React and Next.js, and more.
-          This comes in all forms: blog posts, videos, tweets, conference talks,
-          and workshops. You can watch some of my favorites below.
+          Tu peux me retrouver sur LinkedIn pour mon parcours détaillé et me
+          contacter par email pour toute collaboration ou opportunité.
         </p>
       </div>
-      <div className="my-8 flex w-full flex-col space-x-0 space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-        <ChannelLink
-          img={avatar}
-          name="@leerob"
-          link="https://www.youtube.com/@leerob"
+      <div className="my-8 flex w-full flex-col gap-4 sm:flex-row">
+        <SocialLink
+          href={LINKEDIN_URL}
+          label="LinkedIn"
+          icon={
+            <svg
+              className="h-6 w-6 text-[#0A66C2]"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          }
         />
-        <ChannelLink
-          img={vercel}
-          name="@vercel"
-          link="https://www.youtube.com/@vercelhq"
+        <SocialLink
+          href={GMAIL_MAILTO}
+          label="Gmail / Email"
+          icon={
+            <svg
+              className="h-6 w-6 text-red-600"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden
+            >
+              <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L2.455 4.64 12 9.548l9.545-4.91-1.472-1.853C21.69 2.28 24 3.434 24 5.457z" />
+            </svg>
+          }
         />
       </div>
       <div className="prose prose-neutral dark:prose-invert">
+        <h2 className="font-medium text-xl tracking-tighter mt-10 mb-4">
+          Projets
+        </h2>
         <p>
-          Over the past decade, I've written content on my blog and newsletter.
-          I try to keep things simple. You'll find writing about technologies
-          I'm interested in at the time, or how I'm learning and growing in my
-          career, sharing knowledge along the way.
+          Quelques projets et labs réalisés dans le cadre de ma formation
+          DevOps et de ma préparation aux certifications (KCNA, AWS).
         </p>
       </div>
-      <div className="my-8 flex w-full flex-col space-y-4">
-        <BlogLink
-          name="What Makes A Great Developer Experience?"
-          slug="developer-experience"
+      <div className="my-6 flex w-full flex-col space-y-4">
+        <ProjectLink
+          name="Simulateur KCNA (Kubernetes and Cloud Native Associate)"
+          href={LINKEDIN_URL}
+          description="60 questions, Docker, GitLab CI/CD, Tailwind, mode sombre"
         />
-        <BlogLink name="What is Developer Relations?" slug="devrel" />
-        <BlogLink name="The Story of Heroku" slug="heroku" />
+        <ProjectLink
+          name="Site statique sur AWS S3 + CloudFront"
+          href={LINKEDIN_URL}
+          description="OAI, HTTPS, sécurisation du bucket"
+        />
+        <ProjectLink
+          name="Alerte CPU avec EC2, CloudWatch, SNS"
+          href={LINKEDIN_URL}
+          description="Lab AWS, supervision et alerting"
+        />
+        <ProjectLink
+          name="File d'attente serverless (SQS, Lambda, DynamoDB)"
+          href={LINKEDIN_URL}
+          description="Architecture scalable et tolérante aux pannes"
+        />
       </div>
       <div className="prose prose-neutral dark:prose-invert">
+        <h2 className="font-medium text-xl tracking-tighter mt-10 mb-4">
+          Stack & outils
+        </h2>
         <p>
-          I invest small angel checks into early stage startups building tools
-          for developers.
+          Au quotidien : GitLab CI/CD, Docker, Git, Linux. Expérience avec AWS
+          (EC2, S3, Lambda, CloudWatch, IAM, SQS, DynamoDB), Windows Server,
+          Active Directory, Microsoft 365 Defender.
         </p>
       </div>
-      <div className="my-8 flex h-14 w-full flex-row space-x-2 overflow-x-auto">
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://linear.app">
-            <svg width="78" height="20" role="img" aria-label="Linear logo">
-              <use href="/sprite.svg#linear" />
-            </svg>
+      <div className="my-6 flex h-14 w-full flex-row flex-wrap gap-2">
+        {[
+          { name: 'Docker', href: 'https://www.docker.com' },
+          { name: 'GitLab', href: 'https://about.gitlab.com' },
+          { name: 'AWS', href: 'https://aws.amazon.com' },
+          { name: 'Linux', href: 'https://www.linux.org' },
+        ].map(({ name, href }) => (
+          <a
+            key={name}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-700 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+          >
+            {name}
           </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://supabase.com">
-            <svg width="100" height="19" role="img" aria-label="Supabase logo">
-              <use href="/sprite.svg#supabase" />
-            </svg>
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://www.makeswift.com/blog/makeswift-is-joining-bigcommerce">
-            <svg width="96" height="19" role="img" aria-label="Makeswift logo">
-              <use href="/sprite.svg#makeswift" />
-            </svg>
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://resend.com">
-            <svg width="70" height="17" role="img" aria-label="Resend logo">
-              <use href="/sprite.svg#resend" />
-            </svg>
-          </a>
-        </div>
-        <div className="flex items-center justify-between rounded border border-neutral-200 bg-neutral-50 px-3 py-4 dark:border-neutral-700 dark:bg-neutral-800">
-          <a href="https://bun.sh">
-            <svg width="35" height="27" role="img" aria-label="Bun logo">
-              <use href="/sprite.svg#bun" />
-            </svg>
-          </a>
-        </div>
+        ))}
       </div>
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          I've worked with and advised companies on{' '}
-          <Link href="/blog/developer-marketing">developer marketing</Link>,{' '}
-          <Link href="/blog/devrel">developer relations</Link>, building
-          open-source communities, product-led growth, and more.
+          Pour le détail de mon parcours (Box Africa, Muezy, PRESF, Kenaya
+          Finances, SOPECO…) et mes certifications, voir ma page{' '}
+          <Link href="/work">Expérience</Link> ou mon{' '}
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+            profil LinkedIn
+          </a>
+          .
         </p>
       </div>
     </section>
