@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export function Footer() {
   const pathname = usePathname();
@@ -49,9 +50,49 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 relative">
           <p className="text-xs text-neutral-500 dark:text-neutral-500">
-            Built with{' '}
+            Portfolio réalisé par{' '}
+            <Link
+              href={"https://cyao.vercel.app/"}
+              className={cn(
+                "group font-[600] dark:font-medium relative transition-all duration-500 text-white"
+              )}
+            >
+              C
+              <span
+                className={cn(
+                  "absolute opacity-0 group-hover:relative group-hover:opacity-100 transition-all duration-300 ease-in-out"
+                )}
+              >
+                hrist
+              </span>{" "}
+              <span
+                className={cn(
+                  "absolute left-[7px] group-hover:left-[40px] transition-all duration-300 ease-in-out",
+                )}
+              >
+                yao
+              </span>
+              {/* <span
+                className={cn(
+                  "absolute opacity-0 group-hover:relative group-hover:opacity-100 transition-all duration-300 ease-in-out ml-[6px] dark:ml-[13px]"
+                )}
+              >
+                ao
+              </span> */}
+              <span
+                className={cn(
+                  "absolute left-[25px] dark:left-[27px] group-hover:left-[30px]  dark:group-hover:left-[60px] transition-all dura delay-150 ease-in-out",
+                )}
+              >
+                .
+              </span>
+            </Link>
+          </p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-500">
+
+            {' · Built with '}
             <Link
               href="https://nextjs.org"
               className="underline hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
