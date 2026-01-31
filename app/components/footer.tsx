@@ -46,7 +46,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
+        <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
           <p className="text-xs text-neutral-500 dark:text-neutral-500">
             Built with{' '}
             <Link
