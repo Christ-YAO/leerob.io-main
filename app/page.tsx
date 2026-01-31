@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import avatar from 'public/images/France_.jpg';
 import { CustomIcon } from 'app/components/CustomIcon';
+import { WaveEmoji } from 'app/components/WaveEmoji';
 import { cn } from '@/lib/utils';
 import smashing from 'public/images/home/smashing.jpg';
 import summit from 'public/images/home/summit.jpg';
@@ -132,10 +133,10 @@ export default function Page() {
         <div className="min-w-0 flex-1 space-y-4">
           <div>
             <h1 className="text-2xl font-medium tracking-tighter text-white sm:text-3xl">
-              Bonjour, je suis France Stanislas 👋
+              Hello, je suis France Stanislas <WaveEmoji />
             </h1>
             <p className="mt-2 text-neutral-400">
-              DevOps Junior · CI/CD & automatisation · Abidjan
+              DevOps Junior · CI/CD & automatisation · Abidjan (Côte d&apos;Ivoire)
             </p>
           </div>
           <p className="text-neutral-300 leading-relaxed">
