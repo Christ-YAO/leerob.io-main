@@ -132,8 +132,12 @@ export default function Page() {
         </div>
         <div className="min-w-0 flex-1 space-y-4">
           <div>
-            <h1 className="text-2xl font-medium tracking-tighter text-white sm:text-3xl">
-              Hello, je suis France Stanislas <WaveEmoji />
+            <h1 className="text-3xl font-medium tracking-tighter text-white sm:text-4xl">
+              Hello, je suis{' '}
+              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                France Stanislas
+              </span>{' '}
+              <WaveEmoji />
             </h1>
             <p className="mt-2 text-neutral-400">
               DevOps Junior · CI/CD & automatisation · Abidjan (Côte d&apos;Ivoire)
