@@ -187,7 +187,7 @@ export default function WorkPage() {
           Formation & certifications
         </h2>
         <p className="text-neutral-500 text-sm mt-1">
-          PIGIER Côte d&apos;Ivoire (2023–2024)
+          PIGIER Côte d&apos;Ivoire (2023–Aujourd&apos;hui)
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
           {certifications.map((cert) => (
