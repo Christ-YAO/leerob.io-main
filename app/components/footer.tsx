@@ -23,7 +23,7 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="flex flex-row flex-wrap gap-x-4 gap-y-2">
+          <nav className="flex flex-row flex-wrap gap-x-1 gap-y-2 capitalize">
             {navItems.map(({ path, name }) => {
               const isActive = pathname === path || (path !== '/' && pathname?.startsWith(path));
 
@@ -32,14 +32,17 @@ export function Footer() {
                   key={path}
                   href={path}
                   className={`
-                    text-sm transition-colors
+                    relative py-1.5 px-3 rounded-md text-sm transition-all
                     ${isActive
-                      ? 'text-neutral-900 dark:text-neutral-100 font-medium'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
+                      ? 'text-neutral-900 dark:text-neutral-100 font-medium bg-neutral-100 dark:bg-neutral-800'
+                      : 'text-neutral-500 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-900'
                     }
                   `}
                 >
                   {name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-neutral-900 dark:bg-neutral-100" />
+                  )}
                 </Link>
               );
             })}
