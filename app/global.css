@@ -183,6 +183,60 @@ table {
   }
 }
 
+/* Page load car animation */
+.page-load-loader {
+  --uib-size: 45px;
+  --uib-color: #fff;
+  --uib-speed: 1.75s;
+  --uib-bg-opacity: 0.1;
+  height: 31.25px;
+  width: 50px;
+  transform-origin: center;
+  overflow: visible;
+}
+
+.page-load-loader .loader-track {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+}
+
+.page-load-loader .loader-car {
+  stroke: var(--uib-color);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation:
+    loader-travel var(--uib-speed) ease-in-out infinite,
+    loader-fade var(--uib-speed) ease-out infinite;
+  will-change: stroke-dasharray, stroke-dashoffset;
+  transition: stroke 0.5s ease;
+}
+
+@keyframes loader-travel {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  75% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loader-fade {
+  0% {
+    opacity: 0;
+  }
+  20%,
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
